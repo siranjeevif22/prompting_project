@@ -1,0 +1,381 @@
+<svg width="1500" height="1180" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#090e18"/>
+      <stop offset="100%" stop-color="#070b13"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-y" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f59e0b"/>
+    </marker>
+    <marker id="arr-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <rect width="1500" height="1180" fill="url(#bg)"/>
+
+  <!-- ════ TITLE ════ -->
+  <text x="750" y="38" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700">AI Interview Evaluator — User Interface Blueprint</text>
+  <text x="750" y="60" text-anchor="middle" fill="#475569" font-size="11" letter-spacing="1">How to use every tab · Inputs · Buttons · Outputs · Workflow</text>
+  <line x1="20" y1="70" x2="1480" y2="70" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- ════ WORKFLOW BANNER ════ -->
+  <rect x="20" y="78" width="1460" height="36" rx="6" fill="#0f1a2e" stroke="#1d4ed8" stroke-width="1"/>
+  <text x="750" y="92" text-anchor="middle" fill="#64748b" font-size="10" font-weight="600" letter-spacing="1">WORKFLOW</text>
+  <text x="210" y="104" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="700">① EVALUATOR TAB</text>
+  <text x="380" y="104" text-anchor="middle" fill="#64748b" font-size="10">Upload transcript + prompt</text>
+  <line x1="460" y1="96" x2="498" y2="96" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-y)"/>
+  <text x="510" y="92" fill="#f59e0b" font-size="9">violations</text>
+  <text x="510" y="104" fill="#f59e0b" font-size="9">+ prompt</text>
+  <text x="640" y="104" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">② FIXER TAB</text>
+  <text x="770" y="104" text-anchor="middle" fill="#64748b" font-size="10">Repair the system prompt</text>
+  <line x1="848" y1="96" x2="886" y2="96" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-y)"/>
+  <text x="898" y="92" fill="#f59e0b" font-size="9">fixed</text>
+  <text x="898" y="104" fill="#f59e0b" font-size="9">prompt</text>
+  <text x="1030" y="104" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">③ RUNNER TAB</text>
+  <text x="1190" y="104" text-anchor="middle" fill="#64748b" font-size="10">Run a new conversation</text>
+  <line x1="1280" y1="96" x2="1318" y2="96" stroke="#22c55e" stroke-width="2" marker-end="url(#arr-g)"/>
+  <text x="1330" y="92" fill="#22c55e" font-size="9">transcript</text>
+  <text x="1330" y="104" fill="#22c55e" font-size="9">→ loop ①</text>
+
+  <!-- ════════════════════════════════════════════
+       COLUMN 1 — EVALUATOR TAB
+  ════════════════════════════════════════════ -->
+  <rect x="20" y="122" width="468" height="1038" rx="10" fill="#050d1a" stroke="#1d4ed8" stroke-width="2"/>
+  <!-- header -->
+  <rect x="20" y="122" width="468" height="38" rx="10" fill="#1d4ed8" opacity="0.4"/>
+  <text x="254" y="139" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700">EVALUATOR TAB</text>
+  <text x="254" y="154" text-anchor="middle" fill="#60a5fa" font-size="9.5">Find violations in a conversation against a system prompt</text>
+
+  <!-- section: INPUTS -->
+  <rect x="32" y="168" width="444" height="16" rx="4" fill="#0f2a4a"/>
+  <text x="44" y="180" fill="#3b82f6" font-size="9.5" font-weight="700" letter-spacing="1">INPUTS</text>
+
+  <!-- System prompt -->
+  <rect x="32" y="190" width="444" height="78" rx="6" fill="#0a1628" stroke="#1d4ed8" stroke-width="0.8"/>
+  <text x="44" y="206" fill="#93c5fd" font-size="9.5" font-weight="700">System Prompt</text>
+  <rect x="340" y="196" width="126" height="15" rx="3" fill="#1e3a5f"/>
+  <text x="354" y="207" fill="#64748b" font-size="8">📂 Load .txt file</text>
+  <text x="44" y="221" fill="#94a3b8" font-size="9">Large textarea — paste or type the recruiter agent's system prompt</text>
+  <text x="44" y="235" fill="#94a3b8" font-size="9">This is what the AI agent follows during the interview</text>
+  <rect x="44" y="242" width="420" height="18" rx="3" fill="#0d1f38" stroke="#1d4ed8" stroke-width="0.5"/>
+  <text x="54" y="255" fill="#475569" font-size="8.5" font-style="italic">e.g. "You are Sarah, a recruiter at Acme Corp. Your goal is to..."</text>
+  <text x="44" y="262" fill="#22c55e" font-size="8">✦ Auto-filled when you come back from Runner tab (uses agent prompt)</text>
+
+  <!-- Transcript upload -->
+  <rect x="32" y="276" width="444" height="72" rx="6" fill="#0a1628" stroke="#1d4ed8" stroke-width="0.8"/>
+  <text x="44" y="292" fill="#93c5fd" font-size="9.5" font-weight="700">Transcript File</text>
+  <text x="44" y="308" fill="#94a3b8" font-size="9">Upload a conversation file (.json or .txt format)</text>
+  <text x="44" y="322" fill="#94a3b8" font-size="9">JSON: {"messages": [...]}  ·  TXT: plain conversation log</text>
+  <rect x="44" y="330" width="200" height="10" rx="2" fill="#1e3a5f"/>
+  <text x="54" y="339" fill="#60a5fa" font-size="7.5">📂 Upload File button</text>
+  <rect x="255" y="330" width="210" height="10" rx="2" fill="#0d2233"/>
+  <text x="265" y="339" fill="#22c55e" font-size="7.5">✦ Auto-loaded from Runner after conversation ends</text>
+
+  <!-- section: MODEL SELECTION -->
+  <rect x="32" y="356" width="444" height="16" rx="4" fill="#0f2a4a"/>
+  <text x="44" y="368" fill="#3b82f6" font-size="9.5" font-weight="700" letter-spacing="1">MODEL SELECTION</text>
+
+  <rect x="32" y="378" width="214" height="68" rx="6" fill="#0a1628" stroke="#a855f7" stroke-width="1"/>
+  <text x="139" y="394" text-anchor="middle" fill="#d8b4fe" font-size="10" font-weight="700">Mimo v2.5</text>
+  <text x="139" y="408" text-anchor="middle" fill="#94a3b8" font-size="8.5">Fast · internal pricing</text>
+  <text x="139" y="422" text-anchor="middle" fill="#64748b" font-size="8">No thinking mode</text>
+  <text x="139" y="436" text-anchor="middle" fill="#64748b" font-size="8">16K output tokens</text>
+
+  <rect x="258" y="378" width="218" height="68" rx="6" fill="#0a1628" stroke="#0891b2" stroke-width="1"/>
+  <text x="367" y="394" text-anchor="middle" fill="#67e8f9" font-size="10" font-weight="700">Gemini 2.5 Flash</text>
+  <text x="367" y="408" text-anchor="middle" fill="#94a3b8" font-size="8.5">Recommended · thinks deeply</text>
+  <text x="367" y="422" text-anchor="middle" fill="#f97316" font-size="8">Shows thinking token count</text>
+  <text x="367" y="436" text-anchor="middle" fill="#fbbf24" font-size="8">$0.30 in / $2.50 out /1M</text>
+
+  <!-- section: BUTTONS -->
+  <rect x="32" y="454" width="444" height="16" rx="4" fill="#0f2a4a"/>
+  <text x="44" y="466" fill="#3b82f6" font-size="9.5" font-weight="700" letter-spacing="1">BUTTONS</text>
+
+  <!-- Evaluate buttons -->
+  <rect x="32" y="476" width="210" height="40" rx="6" fill="#1d4ed8" opacity="0.8"/>
+  <text x="137" y="492" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Evaluate (Mimo)</text>
+  <text x="137" y="508" text-anchor="middle" fill="#bfdbfe" font-size="8.5">Runs evaluation using Mimo model</text>
+
+  <rect x="254" y="476" width="222" height="40" rx="6" fill="#0369a1" opacity="0.9"/>
+  <text x="365" y="492" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Evaluate (Gemini)</text>
+  <text x="365" y="508" text-anchor="middle" fill="#bae6fd" font-size="8.5">Runs with thinking — more thorough</text>
+
+  <!-- Violation tools -->
+  <rect x="32" y="524" width="444" height="80" rx="6" fill="#0a1628" stroke="#1d4ed8" stroke-width="0.8"/>
+  <text x="44" y="540" fill="#93c5fd" font-size="9.5" font-weight="700">Violation Management</text>
+  <text x="44" y="556" fill="#94a3b8" font-size="9">After evaluation: violations appear as numbered list</text>
+  <rect x="44" y="562" width="80" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="84" y="578" text-anchor="middle" fill="#94a3b8" font-size="9">Undo  ↩</text>
+  <rect x="136" y="562" width="80" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="176" y="578" text-anchor="middle" fill="#94a3b8" font-size="9">Redo  ↪</text>
+  <text x="232" y="575" fill="#64748b" font-size="8.5">— full undo/redo history</text>
+  <text x="44" y="596" fill="#94a3b8" font-size="9">Type violation number → press Enter or click Remove to delete it</text>
+
+  <!-- Send to Fixer -->
+  <rect x="32" y="612" width="444" height="38" rx="6" fill="#065f46" opacity="0.8"/>
+  <text x="254" y="628" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Send to Fixer  →</text>
+  <text x="254" y="643" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Sends violations JSON + current system prompt to Fixer tab automatically</text>
+
+  <!-- section: OUTPUTS -->
+  <rect x="32" y="658" width="444" height="16" rx="4" fill="#0f2a4a"/>
+  <text x="44" y="670" fill="#3b82f6" font-size="9.5" font-weight="700" letter-spacing="1">OUTPUTS</text>
+
+  <rect x="32" y="678" width="444" height="160" rx="6" fill="#0a1628" stroke="#1d4ed8" stroke-width="0.8"/>
+
+  <rect x="44" y="688" width="420" height="22" rx="4" fill="#0d2233"/>
+  <text x="254" y="704" text-anchor="middle" fill="#94a3b8" font-size="9">📜  Streaming text — raw LLM response appears live as it generates</text>
+
+  <rect x="44" y="718" width="420" height="22" rx="4" fill="#0d2233"/>
+  <text x="254" y="734" text-anchor="middle" fill="#94a3b8" font-size="9">📋  Violations JSON — parsed structured list (editable inline)</text>
+
+  <rect x="44" y="748" width="420" height="22" rx="4" fill="#0d2233"/>
+  <text x="254" y="764" text-anchor="middle" fill="#f97316" font-size="9">🧠  Thinking tokens chip (Gemini only) — shown separately from output</text>
+
+  <rect x="44" y="778" width="420" height="50" rx="4" fill="#071520"/>
+  <text x="254" y="796" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">💰  Token Usage Bar</text>
+  <text x="254" y="812" text-anchor="middle" fill="#64748b" font-size="8.5">Model name  ·  Input tokens  ·  Output tokens  ·  [Thinking tokens]  ·  Total  ·  Cost $</text>
+  <text x="254" y="826" text-anchor="middle" fill="#64748b" font-size="8">Mimo: cost not tracked (internal)  ·  Gemini: thinking included in billed output</text>
+
+  <!-- Save to DB note -->
+  <rect x="32" y="846" width="444" height="34" rx="6" fill="#1a1208" stroke="#d97706" stroke-width="0.8"/>
+  <text x="254" y="860" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="600">💾  Save to DB buttons (optional)</text>
+  <text x="254" y="874" text-anchor="middle" fill="#64748b" font-size="8.5">Save mistakes · Save prompt · Save transcript — stored in db/ folder</text>
+
+  <!-- tips -->
+  <rect x="32" y="888" width="444" height="86" rx="6" fill="#0a100a" stroke="#16a34a" stroke-width="0.8"/>
+  <text x="44" y="904" fill="#22c55e" font-size="9" font-weight="700">💡  TIPS</text>
+  <text x="44" y="920" fill="#64748b" font-size="8.5">• Use Gemini for best results — it reasons before answering</text>
+  <text x="44" y="934" fill="#64748b" font-size="8.5">• Delete false-positive violations with the number input before sending to Fixer</text>
+  <text x="44" y="948" fill="#64748b" font-size="8.5">• After Runner completes, come back here — transcript + prompt are auto-loaded</text>
+  <text x="44" y="962" fill="#64748b" font-size="8.5">• Undo/redo lets you revert accidental violation removals</text>
+
+  <!-- ════════════════════════════════════════════
+       COLUMN 2 — FIXER TAB
+  ════════════════════════════════════════════ -->
+  <rect x="504" y="122" width="468" height="1038" rx="10" fill="#05110d" stroke="#059669" stroke-width="2"/>
+  <!-- header -->
+  <rect x="504" y="122" width="468" height="38" rx="10" fill="#059669" opacity="0.4"/>
+  <text x="738" y="139" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">FIXER TAB</text>
+  <text x="738" y="154" text-anchor="middle" fill="#34d399" font-size="9.5">Repair a broken system prompt based on evaluation violations</text>
+
+  <!-- section: INPUTS -->
+  <rect x="516" y="168" width="444" height="16" rx="4" fill="#052e17"/>
+  <text x="528" y="180" fill="#10b981" font-size="9.5" font-weight="700" letter-spacing="1">INPUTS</text>
+
+  <!-- Old system prompt -->
+  <rect x="516" y="190" width="444" height="82" rx="6" fill="#071a0f" stroke="#059669" stroke-width="0.8"/>
+  <text x="528" y="206" fill="#6ee7b7" font-size="9.5" font-weight="700">Old System Prompt</text>
+  <rect x="820" y="196" width="130" height="15" rx="3" fill="#064e2a"/>
+  <text x="834" y="207" fill="#64748b" font-size="8">📂 Load .txt file</text>
+  <text x="528" y="222" fill="#94a3b8" font-size="9">The current (broken) system prompt that needs to be fixed</text>
+  <text x="528" y="236" fill="#94a3b8" font-size="9">Large editable textarea — paste manually or auto-filled</text>
+  <rect x="528" y="244" width="420" height="18" rx="3" fill="#041a0a" stroke="#059669" stroke-width="0.5"/>
+  <text x="538" y="257" fill="#475569" font-size="8.5" font-style="italic">e.g. "You are Sarah, a recruiter. Ask about work experience..."</text>
+  <text x="528" y="265" fill="#22c55e" font-size="8">✦ Auto-filled when you click "Send to Fixer" from Evaluator tab</text>
+
+  <!-- Evaluation results -->
+  <rect x="516" y="280" width="444" height="82" rx="6" fill="#071a0f" stroke="#059669" stroke-width="0.8"/>
+  <text x="528" y="296" fill="#6ee7b7" font-size="9.5" font-weight="700">Evaluation Results JSON</text>
+  <rect x="820" y="286" width="130" height="15" rx="3" fill="#064e2a"/>
+  <text x="834" y="297" fill="#64748b" font-size="8">📂 Load .json file</text>
+  <text x="528" y="312" fill="#94a3b8" font-size="9">The violations JSON from the Evaluator tab</text>
+  <text x="528" y="326" fill="#94a3b8" font-size="9">Fixer uses this to know what rules were broken and how to fix them</text>
+  <rect x="528" y="334" width="420" height="18" rx="3" fill="#041a0a" stroke="#059669" stroke-width="0.5"/>
+  <text x="538" y="347" fill="#475569" font-size="8.5" font-style="italic">{"violations": [{"rule": "...", "description": "...", "severity": "..."}]}</text>
+  <text x="528" y="355" fill="#22c55e" font-size="8">✦ Auto-filled when you click "Send to Fixer" from Evaluator tab</text>
+
+  <!-- section: BUTTONS -->
+  <rect x="516" y="370" width="444" height="16" rx="4" fill="#052e17"/>
+  <text x="528" y="382" fill="#10b981" font-size="9.5" font-weight="700" letter-spacing="1">BUTTONS</text>
+
+  <rect x="516" y="392" width="444" height="40" rx="6" fill="#047857" opacity="0.85"/>
+  <text x="738" y="408" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Fix Prompt</text>
+  <text x="738" y="422" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Sends both inputs to Groq llama-3.3-70b  ·  streams the repaired prompt live</text>
+
+  <rect x="516" y="440" width="444" height="38" rx="6" fill="#065f46" opacity="0.8"/>
+  <text x="738" y="456" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Send to Runner  →</text>
+  <text x="738" y="471" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Sends fixed prompt to Runner tab  ·  appears below diff view after run completes</text>
+
+  <!-- section: OUTPUTS -->
+  <rect x="516" y="486" width="444" height="16" rx="4" fill="#052e17"/>
+  <text x="528" y="498" fill="#10b981" font-size="9.5" font-weight="700" letter-spacing="1">OUTPUTS</text>
+
+  <rect x="516" y="506" width="444" height="258" rx="6" fill="#071a0f" stroke="#059669" stroke-width="0.8"/>
+
+  <rect x="528" y="516" width="420" height="24" rx="4" fill="#041a0a"/>
+  <text x="738" y="532" text-anchor="middle" fill="#94a3b8" font-size="9">📜  Streaming raw text — fixed prompt streams in live</text>
+
+  <text x="528" y="556" fill="#6ee7b7" font-size="9.5" font-weight="700">Diff View — What Changed</text>
+  <rect x="528" y="562" width="420" height="80" rx="4" fill="#041a0a" stroke="#059669" stroke-width="0.5"/>
+  <text x="538" y="578" fill="#64748b" font-size="8.5">Side-by-side or inline diff between old and new prompt</text>
+  <rect x="538" y="584" width="185" height="48" rx="3" fill="#1a0505"/>
+  <text x="630" y="600" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">OLD (removed lines)</text>
+  <text x="538" y="616" fill="#f87171" font-size="8">- You are a recruiter. Ask about</text>
+  <text x="538" y="628" fill="#f87171" font-size="8">- work experience only.</text>
+  <rect x="733" y="584" width="215" height="48" rx="3" fill="#051a0a"/>
+  <text x="840" y="600" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="600">NEW (added lines)</text>
+  <text x="743" y="616" fill="#4ade80" font-size="8">+ You are Sarah, a recruiter at Acme.</text>
+  <text x="743" y="628" fill="#4ade80" font-size="8">+ Ask about skills AND motivation.</text>
+
+  <text x="528" y="664" fill="#6ee7b7" font-size="9.5" font-weight="700">Fixed Prompt Card</text>
+  <rect x="528" y="670" width="420" height="42" rx="4" fill="#041a0a" stroke="#059669" stroke-width="0.5"/>
+  <text x="738" y="686" text-anchor="middle" fill="#94a3b8" font-size="8.5">Full repaired prompt shown in monospace card</text>
+  <rect x="538" y="692" width="60" height="14" rx="3" fill="#065f46"/>
+  <text x="568" y="703" text-anchor="middle" fill="#a7f3d0" font-size="7.5">Copy</text>
+  <rect x="608" y="692" width="130" height="14" rx="3" fill="#065f46"/>
+  <text x="673" y="703" text-anchor="middle" fill="#a7f3d0" font-size="7.5">Send to Runner →</text>
+
+  <rect x="528" y="724" width="420" height="32" rx="4" fill="#071520"/>
+  <text x="738" y="740" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">💰  Token Usage Bar</text>
+  <text x="738" y="753" text-anchor="middle" fill="#64748b" font-size="8.5">llama-3.3-70b-versatile  ·  Input  ·  Output  ·  Total  ·  Cost $</text>
+
+  <!-- tips -->
+  <rect x="516" y="772" width="444" height="86" rx="6" fill="#040d06" stroke="#16a34a" stroke-width="0.8"/>
+  <text x="528" y="788" fill="#22c55e" font-size="9" font-weight="700">💡  TIPS</text>
+  <text x="528" y="804" fill="#64748b" font-size="8.5">• Both fields auto-fill — you rarely need to type anything here</text>
+  <text x="528" y="818" fill="#64748b" font-size="8.5">• Review the diff carefully — make sure the changes make sense</text>
+  <text x="528" y="832" fill="#64748b" font-size="8.5">• You can manually edit the old prompt textarea before running the fixer</text>
+  <text x="528" y="846" fill="#64748b" font-size="8.5">• "Send to Runner" button appears below the diff once fixer completes</text>
+
+  <!-- ════════════════════════════════════════════
+       COLUMN 3 — RUNNER TAB
+  ════════════════════════════════════════════ -->
+  <rect x="988" y="122" width="492" height="1038" rx="10" fill="#08060f" stroke="#6d28d9" stroke-width="2"/>
+  <!-- header -->
+  <rect x="988" y="122" width="492" height="38" rx="10" fill="#6d28d9" opacity="0.4"/>
+  <text x="1234" y="139" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">RUNNER TAB</text>
+  <text x="1234" y="154" text-anchor="middle" fill="#a78bfa" font-size="9.5">Run a simulated interview conversation between recruiter + candidate</text>
+
+  <!-- section: INPUTS -->
+  <rect x="1000" y="168" width="468" height="16" rx="4" fill="#1e0a4a"/>
+  <text x="1012" y="180" fill="#8b5cf6" font-size="9.5" font-weight="700" letter-spacing="1">INPUTS</text>
+
+  <!-- Model selector -->
+  <rect x="1000" y="190" width="468" height="96" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="206" fill="#c4b5fd" font-size="9.5" font-weight="700">Recruiter Agent Model  (dropdown selector)</text>
+  <text x="1012" y="220" fill="#94a3b8" font-size="8.5">Choose which LLM plays the recruiter "Sarah" role</text>
+  <rect x="1012" y="226" width="210" height="52" rx="5" fill="#130d20" stroke="#7c3aed" stroke-width="1"/>
+  <text x="1117" y="241" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">Groq Models</text>
+  <text x="1022" y="255" fill="#94a3b8" font-size="8">llama-3.3-70b-versatile  (default)</text>
+  <text x="1022" y="267" fill="#94a3b8" font-size="8">openai/gpt-oss-120b · gpt-oss-20b</text>
+  <text x="1022" y="279" fill="#94a3b8" font-size="8">llama-3.1-8b-instant</text>
+  <rect x="1234" y="226" width="224" height="52" rx="5" fill="#0d0f20" stroke="#3730a3" stroke-width="1"/>
+  <text x="1346" y="241" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="600">OpenAI Models</text>
+  <text x="1244" y="255" fill="#94a3b8" font-size="8">gpt-4o-mini · gpt-4.1-nano</text>
+  <text x="1244" y="267" fill="#94a3b8" font-size="8">gpt-4.1-mini · gpt-4.1</text>
+  <text x="1244" y="279" fill="#94a3b8" font-size="8">gpt-5</text>
+
+  <!-- Agent System Prompt -->
+  <rect x="1000" y="294" width="468" height="68" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="310" fill="#c4b5fd" font-size="9.5" font-weight="700">Agent System Prompt  (Recruiter — "Sarah")</text>
+  <rect x="1340" y="300" width="120" height="15" rx="3" fill="#1e0a4a"/>
+  <text x="1354" y="311" fill="#64748b" font-size="8">📂 Load .txt file</text>
+  <text x="1012" y="326" fill="#94a3b8" font-size="9">The system prompt the recruiter agent follows</text>
+  <text x="1012" y="340" fill="#94a3b8" font-size="9">Config JSON variables like {name} get substituted automatically</text>
+  <text x="1012" y="355" fill="#22c55e" font-size="8">✦ Auto-filled when you click "Send to Runner" from Fixer tab</text>
+
+  <!-- Candidate System Prompt -->
+  <rect x="1000" y="370" width="468" height="56" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="386" fill="#c4b5fd" font-size="9.5" font-weight="700">Candidate System Prompt</text>
+  <rect x="1340" y="376" width="120" height="15" rx="3" fill="#1e0a4a"/>
+  <text x="1354" y="387" fill="#64748b" font-size="8">📂 Load .txt file</text>
+  <text x="1012" y="402" fill="#94a3b8" font-size="9">Defines how the candidate LLM responds (personality, background)</text>
+  <text x="1012" y="416" fill="#22c55e" font-size="8.5">✦ Auto-loaded from user_prompt.txt  ·  editable</text>
+
+  <!-- Config JSON -->
+  <rect x="1000" y="434" width="468" height="72" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="450" fill="#c4b5fd" font-size="9.5" font-weight="700">Config JSON  (variable substitution)</text>
+  <rect x="1340" y="440" width="120" height="15" rx="3" fill="#1e0a4a"/>
+  <text x="1354" y="451" fill="#64748b" font-size="8">📂 Load .json file</text>
+  <text x="1012" y="466" fill="#94a3b8" font-size="9">Key-value pairs injected into prompts · e.g. {"name": "Alice", "role": "backend engineer"}</text>
+  <text x="1012" y="480" fill="#94a3b8" font-size="9">Shows ✓ green when valid JSON · ✗ red border when invalid</text>
+  <text x="1012" y="494" fill="#22c55e" font-size="8.5">✦ Auto-loaded from config.json  ·  live validation</text>
+
+  <!-- section: RUNNING THE CONVERSATION -->
+  <rect x="1000" y="514" width="468" height="16" rx="4" fill="#1e0a4a"/>
+  <text x="1012" y="526" fill="#8b5cf6" font-size="9.5" font-weight="700" letter-spacing="1">RUNNING THE CONVERSATION</text>
+
+  <!-- Step 1: click Run -->
+  <rect x="1000" y="534" width="468" height="38" rx="6" fill="#4c1d95" opacity="0.7"/>
+  <text x="1234" y="550" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Run Conversation</text>
+  <text x="1234" y="564" text-anchor="middle" fill="#ddd6fe" font-size="8.5">Click to start — then choose a mode below</text>
+
+  <!-- Mode selection -->
+  <rect x="1000" y="580" width="468" height="76" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="596" fill="#c4b5fd" font-size="9" font-weight="700">After clicking "Run Conversation" — choose mode:</text>
+  <rect x="1012" y="602" width="205" height="46" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="1114" y="620" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="700">Auto Mode</text>
+  <text x="1114" y="634" text-anchor="middle" fill="#64748b" font-size="8">Candidate LLM replies automatically</text>
+  <text x="1114" y="646" text-anchor="middle" fill="#64748b" font-size="8">Full conversation until end_call</text>
+  <rect x="1231" y="602" width="225" height="46" rx="6" fill="#1e1a3f" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="1343" y="620" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">Manual Mode</text>
+  <text x="1343" y="634" text-anchor="middle" fill="#6ee7b7" font-size="8">YOU reply to the agent</text>
+  <text x="1343" y="646" text-anchor="middle" fill="#64748b" font-size="8">Human-in-the-loop testing</text>
+
+  <!-- Auto mode controls -->
+  <rect x="1000" y="664" width="225" height="56" rx="6" fill="#071520" stroke="#1d4ed8" stroke-width="0.8"/>
+  <text x="1112" y="680" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="700">Auto Mode Controls</text>
+  <rect x="1012" y="686" width="100" height="22" rx="4" fill="#7f1d1d"/>
+  <text x="1062" y="702" text-anchor="middle" fill="#fca5a5" font-size="9">⏹  Stop</text>
+  <text x="1122" y="701" fill="#64748b" font-size="8">halt stream</text>
+  <text x="1012" y="715" fill="#64748b" font-size="8">Stops mid-conversation · saves usage so far</text>
+
+  <!-- Manual mode controls -->
+  <rect x="1239" y="664" width="229" height="56" rx="6" fill="#100a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1353" y="680" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="700">Manual Mode Controls</text>
+  <text x="1251" y="696" fill="#94a3b8" font-size="8.5">Type your reply in the input box</text>
+  <text x="1251" y="709" fill="#94a3b8" font-size="8.5">Press Enter or click Send</text>
+  <text x="1251" y="722" fill="#64748b" font-size="8">Shift+Enter for newline</text>
+
+  <!-- section: OUTPUTS -->
+  <rect x="1000" y="728" width="468" height="16" rx="4" fill="#1e0a4a"/>
+  <text x="1012" y="740" fill="#8b5cf6" font-size="9.5" font-weight="700" letter-spacing="1">OUTPUTS</text>
+
+  <rect x="1000" y="748" width="468" height="168" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+
+  <!-- Substituted prompt -->
+  <rect x="1012" y="758" width="444" height="20" rx="3" fill="#130d20"/>
+  <text x="1234" y="773" text-anchor="middle" fill="#94a3b8" font-size="8.5">📋  Substituted Agent Prompt — final prompt after config variables injected</text>
+
+  <!-- Chat thread -->
+  <text x="1012" y="796" fill="#c4b5fd" font-size="9.5" font-weight="700">Live Chat Thread</text>
+  <rect x="1012" y="802" width="200" height="40" rx="5" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="1112" y="818" text-anchor="middle" fill="#7dd3fc" font-size="9" font-weight="600">Sarah (Agent)  ·  Turn N</text>
+  <text x="1112" y="832" text-anchor="middle" fill="#94a3b8" font-size="8">"Hi, thank you for joining today..."</text>
+  <rect x="1250" y="802" width="200" height="40" rx="5" fill="#120d1f" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="1350" y="818" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="600">Candidate / You  ·  Turn N</text>
+  <text x="1350" y="832" text-anchor="middle" fill="#94a3b8" font-size="8">"Hello! I'm excited to be here..."</text>
+
+  <!-- Usage bar -->
+  <rect x="1012" y="850" width="444" height="56" rx="4" fill="#071520"/>
+  <text x="1234" y="866" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="600">💰  Token Usage Bar  (updates live every turn)</text>
+  <text x="1234" y="882" text-anchor="middle" fill="#64748b" font-size="8">Agent model  ·  In / Cached / Out  ·  Cost  |  Candidate  ·  In / Out  ·  Cost  |  Total</text>
+  <text x="1234" y="896" text-anchor="middle" fill="#64748b" font-size="8">Manual Mode: Candidate shows "You (0 tokens)"</text>
+
+  <!-- End buttons -->
+  <rect x="1000" y="924" width="468" height="72" rx="6" fill="#0d0a1a" stroke="#6d28d9" stroke-width="0.8"/>
+  <text x="1012" y="940" fill="#c4b5fd" font-size="9" font-weight="700">After conversation ends (end_call or Stop):</text>
+  <rect x="1012" y="946" width="215" height="38" rx="6" fill="#059669" opacity="0.85"/>
+  <text x="1119" y="962" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Send to Evaluator  →</text>
+  <text x="1119" y="977" text-anchor="middle" fill="#a7f3d0" font-size="8">Loads transcript + switches tab</text>
+  <rect x="1241" y="946" width="215" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="1348" y="962" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="700">Download Transcript</text>
+  <text x="1348" y="977" text-anchor="middle" fill="#64748b" font-size="8">Saves transcript_{timestamp}.json</text>
+
+  <!-- tips -->
+  <rect x="1000" y="1004" width="468" height="86" rx="6" fill="#060812" stroke="#16a34a" stroke-width="0.8"/>
+  <text x="1012" y="1020" fill="#22c55e" font-size="9" font-weight="700">💡  TIPS</text>
+  <text x="1012" y="1036" fill="#64748b" font-size="8.5">• All 3 inputs auto-fill — just verify config JSON is valid (shows ✓)</text>
+  <text x="1012" y="1050" fill="#64748b" font-size="8.5">• Manual Mode is great for testing how the agent handles tricky answers</text>
+  <text x="1012" y="1064" fill="#64748b" font-size="8.5">• Agent stops automatically when it says "end_call" — no action needed</text>
+  <text x="1012" y="1078" fill="#64748b" font-size="8.5">• "Send to Evaluator" downloads the transcript AND switches tabs at once</text>
+
+  <!-- ════ BOTTOM FLOW SUMMARY ════ -->
+  <rect x="20" y="1118" width="1460" height="42" rx="6" fill="#0f1a2e" stroke="#1d4ed8" stroke-width="1"/>
+  <text x="750" y="1132" text-anchor="middle" fill="#475569" font-size="9" font-weight="600" letter-spacing="0.5">QUICK START</text>
+  <text x="750" y="1150" text-anchor="middle" fill="#64748b" font-size="9">① Open Evaluator · upload transcript + paste system prompt · click Evaluate (Gemini)  →  ② violations auto-fill Fixer · click Fix Prompt · review diff · Send to Runner  →  ③ Config loads auto · click Run Conversation · choose Auto or Manual · end conversation · Send to Evaluator  →  repeat</text>
+</svg>

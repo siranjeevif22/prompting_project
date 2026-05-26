@@ -1,0 +1,11 @@
+{
+  "lead_first_name": "Arjun",
+  "company_name": "F22 Labs",
+  "job_title": "Senior AI Engineer",
+  "company_profile": "F22 Labs is a product engineering company building AI-powered SaaS products for global clients.",
+  "job_requirements": "3+ years of experience in Python and AI/ML. Strong knowledge of LLMs, RAG pipelines, and API integrations.",
+  "job_location": "Chennai, Tamil Nadu (Hybrid)",
+  "notice_period": "30",
+  "structure_screening_questions": "[{\"id\": 1, \"question\": \"What is your current notice period?\", \"guidance\": \"Candidate should be able to join within 30 days. If longer, flag it but continue screening.\"}, {\"id\": 2, \"question\": \"Are you comfortable with a hybrid work arrangement in Chennai?\", \"guidance\": \"Candidate must be open to hybrid. If not, note it.\"}]",
+  "candidate_background": "Software developer with 4 years of experience in Python and backend development. Has worked with some ML libraries. Currently employed and open to opportunities."
+} 

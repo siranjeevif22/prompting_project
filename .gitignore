@@ -1,0 +1,54 @@
+# ── Secrets & environment ──────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# Google service-account credentials
+our-hull-*.json
+*-[0-9a-f]*-[0-9a-f]*.json
+
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# ── Node / Frontend ────────────────────────────────────────────────────────────
+node_modules/
+dist/
+build/
+.vite/
+
+# ── Generated output (runtime artefacts) ───────────────────────────────────────
+result.txt
+fixed.txt
+run_transcript.json
+db/*
+!db/.gitkeep
+
+# ── Interview transcripts (PII — candidate data) ───────────────────────────────
+*_call_transcript.json
+*_call_transcript.txt
+*_transcript.json
+*_transcript.txt
+*_transcript2.txt
+transcript_*.json
+1.txt
+2.txt
+3.txt
+
+# ── Personal / scratch ─────────────────────────────────────────────────────────
+notes.txt
+
+# ── OS & IDE ───────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.code-workspace
+.playwright-mcp/
