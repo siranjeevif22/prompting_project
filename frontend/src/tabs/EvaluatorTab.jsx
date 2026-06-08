@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { API, stripSentinels, extractResult, extractUsage, tryLooseJson, streamFetch, calcCost, fmtCost } from '../lib/streamParse'
+import { exportEvaluationDocx } from '../lib/exportDocx'
 
 export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppPrompt, lastTranscript, setLastEvaluationJson, setLastEvaluatorPrompt, lastRunnerAgentPrompt, switchTab }) {
   const [prompt, setLocalPrompt] = useState('')
@@ -11,6 +12,9 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
   const [jsonEditError, setJsonEditError] = useState('')
   const historyRef = useRef([])
   const historyIndexRef = useRef(-1)
+  const transcriptInputRef = useRef(null)
+  const configInputRef = useRef(null)
+  const promptInputRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [copiedPrompt, setCopiedPrompt] = useState(false)
@@ -173,6 +177,12 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
     }
   }
 
+  async function handleDownloadDocx() {
+    const data = liveJson || parsed
+    if (!data) return
+    await exportEvaluationDocx(data, counts, checklistCounts)
+  }
+
   // parse editableJson live for violations display
   const liveJson = useMemo(() => {
     try { return JSON.parse(editableJson) } catch { return null }
@@ -232,10 +242,18 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
           </div>
         ) : (
           <div className="file-row">
-            <label className="file-btn">
+            <button className="file-btn" onClick={() => transcriptInputRef.current?.click()}>
               Choose file
-              <input type="file" accept=".json,.txt,application/json,text/plain" onChange={e => setTranscript(e.target.files[0])} />
-            </label>
+            </button>
+            <span style={{ width: 0, height: 0, overflow: 'hidden', display: 'inline-block' }}>
+              <input
+                ref={transcriptInputRef}
+                type="file"
+                accept=".json,.txt,application/json,text/plain"
+                tabIndex={-1}
+                onChange={e => setTranscript(e.target.files[0])}
+              />
+            </span>
             <span className="filename">{transcript ? transcript.name : 'No file selected'}</span>
           </div>
         )}
@@ -244,13 +262,16 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
       <section className="card">
         <div className="label-row">
           <label className="label">Config JSON {!configValid && <span className="json-err">✗ invalid</span>}</label>
-          <label className="file-btn small">
-            Load .json
-            <input type="file" accept=".json,application/json" onChange={async e => {
-              const f = e.target.files[0]; if (!f) return
-              setConfigJson(await f.text())
-            }} />
-          </label>
+          <button className="file-btn small" onClick={() => configInputRef.current?.click()}>Load .json</button>
+          <span style={{ width: 0, height: 0, overflow: 'hidden', display: 'inline-block' }}>
+            <input
+              ref={configInputRef}
+              type="file"
+              accept=".json,application/json"
+              tabIndex={-1}
+              onChange={async e => { const f = e.target.files[0]; if (!f) return; setConfigJson(await f.text()) }}
+            />
+          </span>
         </div>
         <textarea
           className={`prompt-area mono ${configValid ? '' : 'invalid'}`}
@@ -265,13 +286,16 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
         <div className="label-row">
           <label className="label">System Prompt (editable)</label>
           <div style={{display: 'flex', gap: 8}}>
-            <label className="file-btn small">
-              Load .txt
-              <input type="file" accept=".txt,text/plain" onChange={async e => {
-                const f = e.target.files[0]; if (!f) return
-                setPrompt(await f.text())
-              }} />
-            </label>
+            <button className="file-btn small" onClick={() => promptInputRef.current?.click()}>Load .txt</button>
+            <span style={{ width: 0, height: 0, overflow: 'hidden', display: 'inline-block' }}>
+              <input
+                ref={promptInputRef}
+                type="file"
+                accept=".txt,text/plain"
+                tabIndex={-1}
+                onChange={async e => { const f = e.target.files[0]; if (!f) return; setPrompt(await f.text()) }}
+              />
+            </span>
             <button className="copy-btn" onClick={() => {
               navigator.clipboard.writeText(prompt).then(() => {
                 setCopiedPrompt(true); setTimeout(() => setCopiedPrompt(false), 1500)
@@ -283,9 +307,6 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
       </section>
 
       <div className="eval-btn-row">
-        <button className="evaluate-btn mimo-btn" onClick={() => handleEvaluate('evaluate')} disabled={loading}>
-          {loading ? 'Evaluating...' : 'Evaluate (Mimo)'}
-        </button>
         <button className="evaluate-btn gemini-btn" onClick={() => handleEvaluate('evaluate-gemini')} disabled={loading}>
           {loading ? 'Evaluating...' : 'Evaluate (Gemini)'}
         </button>
@@ -323,6 +344,9 @@ export default function EvaluatorTab({ prompt: initialPrompt, setPrompt: setAppP
           <div className="raw-toggle-row">
             <button className="raw-toggle-btn" onClick={() => setShowRaw(p => !p)}>
               {showRaw ? 'Hide raw output' : 'Show raw output'}
+            </button>
+            <button className="download-docx-btn" onClick={handleDownloadDocx}>
+              ⬇ Download DOCX
             </button>
           </div>
 

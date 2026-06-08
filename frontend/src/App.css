@@ -482,7 +482,8 @@ textarea:focus {
 /* Raw toggle */
 .raw-toggle-row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 }
 
@@ -501,6 +502,23 @@ textarea:focus {
 .raw-toggle-btn:hover {
   background: var(--gray-100);
   color: var(--gray-700);
+}
+
+.download-docx-btn {
+  background: var(--violet-600);
+  color: #ffffff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.download-docx-btn:hover {
+  background: var(--violet-700);
 }
 
 /* Compliance checklist */
